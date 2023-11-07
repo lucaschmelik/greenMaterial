@@ -1,1 +1,34 @@
-<p>producto works!</p>
+<div class="container">
+  <div class="row" style="padding-bottom: 2%;">
+    <hr class="no-line">
+  </div>
+  <div style="padding-bottom: 3%;">
+    <h1 class="titulo">Productos del catálogo</h1>
+    <hr class="no-line">
+    <h6>Productos > Todos</h6>
+  </div>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let product of productMocks">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4 d-flex justify-content-center align-items-center" style="padding-left: 2%; padding-right: 2%">
+            <img [src]="product.image" class="img-fluid rounded-start" alt="Imagen del producto">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body" style="padding-left: 3%;">
+              <h5 class="card-title">{{ product.description }}</h5>
+              <p class="card-text">Precio: {{ product.price }}</p>
+              <p class="card-text">Color: {{ product.color }}</p>
+              <p class="card-text">Stock: {{ product.stock }}</p>
+              <div class="d-grid gap-2" style="padding-bottom: 3%; width: 50%;">
+                <button type="button" class="btn btn-secondary" >
+                  <span>AGREGAR</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
