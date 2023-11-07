@@ -1,0 +1,28 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.green-material {
+    display: inline-block;
+    vertical-align: middle; 
+    margin-left: 10px; 
+    font-family: 'Source Sans 3', sans-serif; 
+    color: #444444; 
+    font-weight: bold;
+    font-size: 30px; 
+    text-decoration: none;
+  }
+.col-md-4-padding{
+  padding-left: 2%;
+}
+.icon-verde {
+  color: #005f41;
+  font-size: xxx-large;
+}
+.iniciar-sesion{
+    font-family: 'Source Sans 3', sans-serif; 
+    color: #444444;
+    font-weight: bold;
+    cursor: pointer;
+}
+.fondo-blanco{
+  background-color: rgb(255, 255, 255);
+}

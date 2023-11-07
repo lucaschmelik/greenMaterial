@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "tcp:greenmaterial.database.windows.net,1433"
+    }
+  }
+}

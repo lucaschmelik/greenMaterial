@@ -1,0 +1,92 @@
+<div class="container-fluid" >
+    <div class="row" style="padding-bottom: 2%;">
+        <hr class="no-line">
+      </div>
+    <div style="text-align: center; padding-bottom: 3%;">
+        <h1 class="titulo">ENVÍO</h1>
+        <h5 class="subtitulo">Verificar montos antes de finalizar la compra</h5>
+    </div>
+    <div class="row" style="padding-left: 5%;">        
+        <div class="col-md-6">
+            <h5 class="tituloDiv" >Opciones de entrega</h5>
+            <div class="container" style="padding-right: 10%; padding-left: 5%">
+                <div class="content" style="padding-top: 2%;">
+                    <div>
+                        <h6>Envío a la puerta<span style="float: right;">$1000 <input class="radio-large" type="radio" id="envioPuerta" name="opcionEntrega" (click)="guardarOpcionSeleccionada(1000, true)" checked></span></h6>
+                        <p class="subtitulo"><span>Tiempo estimado: </span>3-5 días</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="content">
+                    <div>
+                        <h6>Retirar por fábrica<span style="float: right;">$0 <input class="radio-large" type="radio" id="retirarFabrica" name="opcionEntrega" (click)="guardarOpcionSeleccionada(0, false)"></span></h6>
+                        <p class="subtitulo"><span>Tiempo estimado: </span>1 día</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isDelivery">
+                <h5 style="padding-top: 5%;" class="tituloDiv" >Detalles de envío</h5>
+                <div class="container" [formGroup]="deliveryForm" style="padding-top: 3%;" data-no-validation>
+                    <div style="padding-left: 5%; padding-right: 5%;">
+                        <div class="d-flex" style="padding-bottom: 2%">
+                            <div class="col-md-4">
+                                <label for="name">Nombre del que recibe <span class="required-field">*</span></label>
+                                <input type="text"  class="form-control" formControlName="name" placeholder="Juan Perez">   
+                                <div *ngIf="isDelivery && name.invalid && (name.dirty || name.touched)" class="alert">
+                                    <div *ngIf="name.errors?.['required']">
+                                        Es necesario ingresar el nombre del que recibe.
+                                    </div>
+                                </div>                                 
+                            </div>
+                            <div class="col-md-6"style="padding-left: 10%;">
+                                <label for="adress">Dirección de envío <span class="required-field">*</span></label>
+                                <input type="text" class="form-control" formControlName="adress" placeholder="Av siempre viva 2023">
+                                <div *ngIf="isDelivery && adress.invalid && (adress.dirty || adress.touched)" class="alert">
+                                    <div *ngIf="adress.errors?.['required']">
+                                        Es necesario ingresar la dirección de envío.
+                                    </div>
+                                </div>   
+                            </div>                        
+                        </div>
+                        <div class="d-flex" style="padding-bottom: 2%">
+                            <div class="col-md-4">
+                                <label for="phoneNumber">Celular del que recibe <span class="required-field">*</span></label>
+                                <input type="text" class="form-control" formControlName="phoneNumber" placeholder="+54 1130405060">
+                                <div *ngIf="isDelivery && phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert">
+                                    <div *ngIf="phoneNumber.errors?.['required']">
+                                        Es necesario ingresar el celular del que recibe.
+                                    </div>
+                                </div>   
+                            </div> 
+                            <div class="col-md-6"style="padding-left: 10%;">
+                                <label for="notes">Comentarios</label>
+                                <input type="text" class="form-control" formControlName="notes" placeholder="Enfrente de la iglesia">
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="col-md-6" style="padding-left: 10%; padding-right: 10%;">
+            <h5 class="tituloDiv">RESUMEN</h5>
+            <div class="container">
+                <div class="content" style="padding-top: 5%;">
+                    <div class="text" style="padding-left: 5%;">
+                        <h6>Items en el carrito<span style="float: right;">${{total}}</span></h6>
+                        <h6>Envío<span style="float: right;">${{delivery}}</span></h6>
+                        <p class="subtitulo">Descuento aplicado<span style="float: right;">$0</span></p>
+                        <hr>
+                    </div>
+                </div>
+                <div style="padding-left: 5%;">
+                    <h5>TOTAL<span style="float: right;">${{total+delivery}}</span></h5>
+                </div>
+                <div style="text-align: center; padding-top: 2%;">
+                    <button type="button" style="width: 50%;" class="btn btn-secondary" (click)="goToPayment()">
+                        <span>IR A PAGAR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

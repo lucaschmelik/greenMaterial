@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mssql3": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/GreenMaterial/providers/Microsoft.ServiceLinker/linkers/tcpgreenmaterialdb.database.windows.net1_03A6A05DF4",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/greenmaterialdb/databases/GreenMaterial",
+      "type": "mssql.azure",
+      "connectionId": "tcp:greenmaterialdb.database.windows.net,1433"
+    }
+  }
+}

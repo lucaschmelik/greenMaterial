@@ -1,0 +1,48 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.titulo{
+    vertical-align: middle; 
+    font-family: 'Source Sans 3', sans-serif; 
+    color: #444444; 
+    font-weight: bold;
+    font-size: 35px; 
+    text-decoration: none;
+}
+.subtitulo{
+    vertical-align: middle; 
+    font-family: 'Source Sans 3', sans-serif; 
+    color: #757474; 
+    font-weight: bold;
+    font-size: 15px; 
+    text-decoration: none;
+}
+.container {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.tituloDiv{
+    padding-left: 1%;
+    font-family: 'Source Sans 3', sans-serif; 
+    color: #444444; 
+    font-weight: bold;
+    font-size: 20px; 
+}
+.radio-large {
+    transform: scale(1.5);
+    margin-left: 10px;
+}
+[data-no-validation] .ng-valid:not(form):not(.alert).ng-touched {
+    border-left: 5px solid green; 
+  }
+[data-no-validation] .ng-invalid:not(form):not(.alert).ng-touched { 
+    border-left: 5px solid red; 
+}
+.required-field {
+color: red;
+margin-left: 5px;
+font-weight: bold; /* Ajusta el espacio entre el texto del label y el asterisco */
+}

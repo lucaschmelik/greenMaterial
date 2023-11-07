@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 2%;">
+        <hr class="no-line">
+      </div>
+    <div style="text-align: center; padding-bottom: 3%;">
+        <h1 class="titulo">CARRITO</h1>
+        <h5 class="subtitulo">Verificar montos antes de finalizar la compra</h5>
+    </div>
+    <div *ngIf="!itemsList.length && !stateInvoice" style="text-align: center; padding-top: 5%; font-style: italic;">
+        <h3>No hay productos agregados al carrito...</h3>
+    </div>
+    <div *ngIf="stateInvoice" style="text-align: center; padding-top: 2%;">
+        <button type="button" style="width: 50%;" class="btn btn-secondary" (click)="goTo()">
+            <span>CONTINUAR ULTIMA COMPRA</span>
+        </button>
+    </div>
+    <div *ngIf="itemsList.length && !stateInvoice" class="row" style="padding-left: 5%">
+        <div class="col-md-6">
+            <h5 class="tituloDiv">TU PEDIDO</h5>
+            <div *ngFor="let item of itemsList" style="padding-bottom: 2%">
+                <div class="container">
+                    <div class="top-bar">
+                        <div class="delete-icon" (click)="deleteItem(item.itemId)">
+                            &#10006;
+                        </div>
+                    </div>
+                    <div class="content">
+                        <img class="image" src="/assets/placa3.png" alt="Material Reciclable">
+                        <div class="text">
+                            <h5 class="">{{item.product.description}}</h5>
+                            <p class="subtitulo">{{item.product.subdescription}}</p>
+                            <p class="subtitulo">Cantidad: {{item.amount}}</p>
+                            <p class="subtitulo">Color: {{item.product.color}}</p>
+                        </div>
+                    </div>
+                    <div class="total subtitulo">
+                        Total del Pedido: {{item.product.price * item.amount}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-left: 10%; padding-right: 10%;">
+            <h5 class="tituloDiv">RESUMEN</h5>
+            <div class="container">
+                <div class="content" style="padding-top: 5%;">
+                    <div class="text" style="padding-left: 5%;">
+                        <h6>Items en el carrito<span style="float: right;">${{totalPrice}}</span></h6>
+                        <p class="subtitulo">Descuento aplicado<span style="float: right;">$0</span></p>
+                        <hr>
+                    </div>
+                </div>
+                <div style="padding-left: 5%;">
+                    <h5>TOTAL<span style="float: right;">${{totalPrice}}</span></h5>
+                </div>
+                <div style="text-align: center; padding-top: 2%;">
+                    <button type="button" style="width: 50%;" class="btn btn-secondary" (click)="confirmShippingCart()">
+                        <span>CONFIRMAR COMPRA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.carousel-item {
+  border: solid 1px;
+}
+
+.padding-left {
+  padding-left: 3%;
+}
+
+.disponibilidad-disponible {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%; /* Esto crea un círculo */
+}
+
+.disponibilidad-no-disponible {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%; /* Esto crea un círculo */
+}

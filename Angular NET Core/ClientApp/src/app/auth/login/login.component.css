@@ -1,0 +1,25 @@
+.green-material-text {
+    font-family: 'Source Sans 3', sans-serif; /* Tipo de fuente */
+    color: #444444; /* Color del texto */
+    font-weight: bold;
+    font-size: 20px; /* Tamaño de fuente (ajusta según tus necesidades) */
+    padding-bottom: 3%;
+    padding-top: 3%;
+  }
+.submit-verde{
+    --bs-btn-bg: #005f41;
+    --bs-btn-border-color: #7e7e7e;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0d4936;
+    --bs-btn-hover-border-color: #7e7e7e;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #005f41;
+    --bs-btn-active-bg: #0d4936;
+    --bs-btn-active-border-color: #7e7e7e;
+}
+.ng-valid:not(form).ng-touched {
+  border-left: 5px solid green; 
+}
+.ng-invalid:not(form).ng-touched {
+  border-left: 5px solid red; 
+}

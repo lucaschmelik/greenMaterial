@@ -1,0 +1,63 @@
+<header class="jumbotron bg-cover fondo-blanco">
+    <div class="text-center text-white" style="background-color: #02704d;">
+        <h6 >¡Envío gratuito en todos los pedidos superiores a $25000! ¡Por tiempo limitado!</h6>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8" style="padding-left: 2%;">
+            <!-- Coloca el contenido principal en 8 columnas -->
+            <img src="./assets/logo.png" alt="Imagen de la empresa" height="80">
+            <div class="green-material">
+                <a class="green-material" routerLink="/">Green Material</a>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding-right: 3%;">
+            <div *ngIf="!isUserLogin" class="text-end">
+              <a class="bi bi-person icon-verde" routerLink="/iniciar-sesion"></a>
+              <a class="iniciar-sesion" routerLink="/iniciar-sesion">Iniciar sesión</a>
+            </div>
+            <div *ngIf="isUserLogin" class="text-end">
+              <a class="bi bi-person icon-verde" routerLink="/iniciar-sesion"></a>
+              <a class="iniciar-sesion" (click)="cerrarSesion()">Cerrar sesión</a>
+            </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid">
+          <a class="navbar-brand" routerLink="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/inicio">INICIO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/placas">PRODUCTOS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nosotros">NOSOTROS</a>
+              </li>
+              <li class="nav-item" *ngIf="isUserLogin">
+                <a class="nav-link" routerLink="/carrito">CARRITO</a>
+              </li>
+              <li class="nav-item" *ngIf="isUserLogin">
+                <a class="nav-link" routerLink="/cuenta">CUENTA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/inicio">CONTACTO</a>
+              </li>
+              <li class="nav-item dropdown" *ngIf="isUserLogin">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ADMINISTRACION</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="/usuario">USUARIOS</a></li>
+                  <li><a class="dropdown-item" routerLink="/producto">PRODUCTOS</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>    
+</header>

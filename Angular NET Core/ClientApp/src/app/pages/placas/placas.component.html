@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row" style="padding-bottom: 2%;">
+    <hr class="no-line">
+  </div>
+  <div class="row padding-left">
+    <div class="col-md-6">
+      <div>
+        <div class="carousel-inner" style="max-height: 600px;">
+          <div class="carousel-item active">
+            <img src="/assets/placa4.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="padding-left: 10%; padding-top: 3%;">
+      <h5>{{ product.description }}</h5>
+      <h6 style="opacity: 70%;">{{ product.subdescription }}</h6>
+      <div class="d-flex" style="padding-bottom: 3%;">
+        <div class="col-md-2">
+          <h3>${{ product.price - (product.price * descont)/100  }}</h3>
+        </div>
+        <div class="col-md-2">
+          <h3 style="opacity: 50%; text-decoration:line-through">${{ product.price }}</h3>
+        </div>
+        <div class="col-md-2">
+          <h3>-{{ descont }}%</h3>
+        </div>
+      </div>
+      <div style="padding-bottom: 3%;">
+        <select [(ngModel)]="color" class="form-select" style="width: 50%">
+          <option value="1">BLANCO</option>
+          <option value="2">NEGRO</option>
+          <option value="3">MARRÓN</option>
+        </select>
+      </div>
+      <div style="padding-bottom: 3%;">
+        <div class="options">
+          <select [(ngModel)]="cantidad" class="form-select select" style="width: 50%">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-grid gap-2" style="padding-bottom: 3%; width: 50%;">
+        <button type="button" class="btn btn-secondary" (click)="agregarAlCarrito()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
+          <span class="ms-2 small">AGREGAR AL CARRITO</span>
+        </button>
+      </div>
+      <div style="padding-bottom: 3%; display: flex; align-items: center;">
+        <span class="disponibilidad-disponible"></span>
+        <h6 style="margin-left: 8px; opacity: 80%;">Disponible</h6>
+        <span *ngIf="false" class="disponibilidad-no-disponible"></span>
+      </div>
+      <div style="padding-bottom: 3%; padding-right: 50%;">
+        <h6 style="margin-left: 8px; opacity: 60%; text-align: justify;" [innerHTML]="product.detail"></h6>
+      </div>
+    </div>
+  </div>
+</div>

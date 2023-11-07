@@ -1,0 +1,107 @@
+<div class="container-fluid" >
+    <div class="row" style="padding-bottom: 2%;">
+        <hr class="no-line">
+      </div>
+    <div style="text-align: center; padding-bottom: 3%;">
+        <h1 class="titulo">PAGO</h1>
+        <h5 class="subtitulo">Verificar montos antes de finalizar la compra</h5>
+    </div>
+    <div class="row" style="padding-left: 5%;">
+      <div class="col-md-6">
+        <h5 class="tituloDiv">MEDIO DE PAGO</h5>
+        <div class="container" style="padding-right: 10%; padding-left: 5%; padding-top: 3%;">
+          <div>
+            <h6>Efectivo<span style="float: right;"><input class="radio-large" type="radio" id="efectivo" name="opcionPago" (click)="changeTypePayment(1)" checked></span></h6>
+          </div>
+          <hr>
+          <div>
+            <h6>Tarjeta débito / crédito<span style="float: right;"><input class="radio-large" type="radio" id="tarjetaCredito" name="opcionPago" (click)="changeTypePayment(2)"></span></h6>
+          </div>
+          <hr>
+          <div style="padding-bottom: 1.5%;">
+            <h6>Mercado Pago<span style="float: right;"><input class="radio-large" type="radio" id="mercadoPago" name="opcionPago" (click)="changeTypePayment(3)"></span></h6>
+          </div>
+        </div>
+        <div *ngIf="paymentType == 2">
+          <h5 style="padding-top: 5%;" class="tituloDiv">Detalles de tarjeta de crédito</h5>
+          <div class="container" [formGroup]="creditCardForm" style="padding-top: 3%;" data-no-validation>
+            <div style="padding-left: 5%; padding-right: 5%;">
+
+              <div class="form-group" style="padding-top: 3%;">
+                <label for="numeroTarjeta">Número de Tarjeta <span class="required-field">*</span></label>
+                <input type="text" class="form-control" id="numeroTarjeta" formControlName="number">
+                <div *ngIf="paymentType == 2 && number.invalid && (number.dirty || number.touched)" class="alert">
+                  <div *ngIf="number.errors?.['required']">
+                    Es necesario ingresar el número de tarjeta.
+                  </div>
+                </div>
+              </div>
+              <div class="form-row" style="padding-top: 3%;">
+                <div style="display: flex;">
+                  <div style="flex-direction: column; flex: 1; margin-right: 10px;">
+                    <label for="fechaExpiracion" class="mr-2">MM/YY <span class="required-field">*</span></label>
+                    <input type="text" class="form-control" style="text-align: left;" id="fechaExpiracion" formControlName="mmyy">
+                    <div *ngIf="paymentType == 2 && mmyy.invalid && (mmyy.dirty || mmyy.touched)" class="alert">
+                      <div *ngIf="mmyy.errors?.['required']">
+                        Es necesario ingresar la fecha de expiración.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="flex-direction: column; flex: 1; margin-left: 10px;">
+                    <label for="cvc" class="mr-2">CVC 3 dígitos <span class="required-field">*</span></label>
+                    <input type="text" class="form-control" id="cvc" formControlName="cvc">
+                    <div *ngIf="paymentType == 2 && cvc.invalid && (cvc.dirty || cvc.touched)" class="alert">
+                      <div *ngIf="cvc.errors?.['required']">
+                        Es necesario ingresar los últimos 3 dígitos de la tarjeta.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="padding-top: 3%; padding-bottom: 3%;">
+                <label for="nombreTarjeta" class="mr-2">Nombre que figura en la tarjeta <span class="required-field">*</span></label>
+                <input type="text" class="form-control" id="nombreTarjeta" formControlName="name">
+                <div *ngIf="paymentType == 2 && name.invalid && (name.dirty || name.touched)" class="alert">
+                  <div *ngIf="name.errors?.['required']">
+                    Es necesario ingresar el nombre que figura en la tarjeta.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="paymentType == 3">
+          <h5 style="padding-top: 5%;" class="tituloDiv">Detalle de Mercado Pago</h5>
+          <div class="container" style="padding-top: 3%;">
+            <div style="padding-left: 5%; padding-right: 5%;">
+              PROXIMAMENTE...
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; padding-top: 2%;">
+          <button type="button" style="width: 50%;" class="btn btn-secondary" (click)="finishOrder()">
+            <span>COMPLETAR COMPRA</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6" style="padding-left: 10%; padding-right: 10%;">
+        <h5 class="tituloDiv">RESUMEN</h5>
+        <div class="container">
+          <div class="content" style="padding-top: 5%;">
+            <div class="text" style="padding-left: 5%;">
+              <h6>Items en el carrito<span style="float: right;">${{itemsTotal}}</span></h6>
+              <h6>Envío<span style="float: right;">${{deliveryTotal}}</span></h6>
+              <p class="subtitulo">Descuento aplicado<span style="float: right;">$0</span></p>
+              <hr>
+            </div>
+          </div>
+          <div style="padding-left: 5%;">
+            <h5>TOTAL<span style="float: right;">${{itemsTotal+deliveryTotal}}</span></h5>
+          </div>
+        </div>
+    </div>
+    
+</div>
+</div>

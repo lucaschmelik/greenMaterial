@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 2%;">
+        <hr class="no-line">
+      </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="registerForm">
+            <div class="green-material">
+                <h4 class="green-material-text">INGRESE LOS DATOS PARA REGISTRAR EL NUEVO USUARIO</h4>
+            </div>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Nombre <span class="required-field">*</span></label>
+                <input formControlName="firstName" class="form-control" aria-describedby="emailHelp">
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
+                    <div *ngIf="firstName.errors?.['required']">
+                        Es necesario ingresar el nombre.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Apellido <span class="required-field">*</span></label>
+                <input formControlName="lastName" class="form-control" aria-describedby="emailHelp">
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
+                    <div *ngIf="lastName.errors?.['required']">
+                        Es necesario ingresar el apellido.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email <span class="required-field">*</span></label>
+                <input formControlName="email" class="form-control" aria-describedby="emailHelp">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+                    <div *ngIf="email.errors?.['required']">
+                        Es necesario ingresar el email.
+                    </div>
+                    <div *ngIf="email.errors?.['email']">
+                        El email debe tener un formato correcto.                
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña <span class="required-field">*</span></label>
+                <input type="password" formControlName="password" class="form-control">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+                    <div *ngIf="password.errors?.['required']">
+                        Es necesario ingresar la contraseña.
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" >
+                <button type="submit" style="margin-left: 10px;" class="btn btn-secondary" (click)="Register()">Registrar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
