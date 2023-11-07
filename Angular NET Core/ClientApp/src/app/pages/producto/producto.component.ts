@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-
-interface Product {
-  id: number;
-  description: string;
-  subdescription: string;
-  detail: string;
-  price: number;
-  color: string;
-  stock: number;
-  image: string;
-}
+import { Router } from '@angular/router';
+import { InvoiceService } from '../../services/invoice/invoice.service';
+import { ProductService } from '../../services/product/product.service';
+import { ProductResponse } from '../../services/product/productResponse';
 
 @Component({
   selector: 'app-producto',
@@ -17,46 +10,43 @@ interface Product {
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent {
-  productMocks: Product[] = [
-    {
-      id: 1,
-      description: 'Product 1',
-      subdescription: 'Subdescription for Product 1',
-      detail: 'Details of Product 1',
-      price: 29.99,
-      color: 'Red',
-      stock: 50,
-      image: '/assets/luminaria1.png'
-    },
-    {
-      id: 2,
-      description: 'Product 2',
-      subdescription: 'Subdescription for Product 2',
-      detail: 'Details of Product 2',
-      price: 49.99,
-      color: 'Blue',
-      stock: 30,
-      image: '/assets/luminaria2.png'
-    },
-    {
-      id: 3,
-      description: 'Product 3',
-      subdescription: 'Subdescription for Product 3',
-      detail: 'Details of Product 3',
-      price: 19.99,
-      color: 'Green',
-      stock: 70,
-      image: '/assets/placa4.png'
-    },
-    {
-      id: 4,
-      description: 'Product 4',
-      subdescription: 'Subdescription for Product 4',
-      detail: 'Details of Product 4',
-      price: 39.99,
-      color: 'Yellow',
-      stock: 20,
-      image: '/assets/placa3.png'
-    }
-  ];
+
+  constructor(
+    private productService: ProductService,
+    private invoiceService: InvoiceService,
+    private router: Router) { }
+
+  productMocks: ProductResponse[] = []
+
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (userData) => {
+        this.productMocks = userData.map((productData) => {
+          return {
+            id: productData.id,
+            description: productData.description,
+            subdescription: productData.subdescription,
+            detail: productData.detail,
+            price: productData.price,
+            color: productData.color,
+            stock: productData.stock,
+            image: productData.image
+          };
+        });
+
+        console.log('Productos en componente:', this.productMocks);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  addProduct(id: number) {
+    this.router.navigate(['/placas', { productMocks: JSON.stringify(this.productMocks.find(producto => producto.id === id)) }]);
+  }
 }

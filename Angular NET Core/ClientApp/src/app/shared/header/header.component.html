@@ -34,7 +34,7 @@
                 <a class="nav-link" routerLink="/inicio">INICIO</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/placas">PRODUCTOS</a>
+                <a class="nav-link" routerLink="/productos">PRODUCTOS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="/nosotros">NOSOTROS</a>
@@ -49,11 +49,7 @@
                 <a class="nav-link" routerLink="/inicio">CONTACTO</a>
               </li>
               <li class="nav-item dropdown" *ngIf="isUserLogin">
-                <a class="nav-link" data-bs-toggle="dropdown" role="button" aria-expanded="false">ADMINISTRACION</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" routerLink="/usuario">USUARIOS</a></li>
-                  <li><a class="dropdown-item" routerLink="/producto">PRODUCTOS</a></li>
-                </ul>
+                <a class="nav-link" routerLink="/usuario">ADMINISTRACION</a>
               </li>
             </ul>
           </div>

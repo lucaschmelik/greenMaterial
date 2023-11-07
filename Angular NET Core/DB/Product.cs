@@ -15,8 +15,6 @@ namespace DB
         public decimal price { get; set; }
         public string color { get;set; }
         public int stock { get;set; }
-
-        [JsonIgnore]
-        public ICollection<Item> items { get; set; }
+        public string image { get; set; }
     }
 }

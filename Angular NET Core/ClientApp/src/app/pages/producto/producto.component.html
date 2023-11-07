@@ -17,11 +17,10 @@
           <div class="col-md-8">
             <div class="card-body" style="padding-left: 3%;">
               <h5 class="card-title">{{ product.description }}</h5>
-              <p class="card-text">Precio: {{ product.price }}</p>
-              <p class="card-text">Color: {{ product.color }}</p>
-              <p class="card-text">Stock: {{ product.stock }}</p>
+              <p class="card-text">Precio: ${{ product.price }}</p>
+              <p class="card-text">Detalle: {{ product.subdescription }}</p>
               <div class="d-grid gap-2" style="padding-bottom: 3%; width: 50%;">
-                <button type="button" class="btn btn-secondary" >
+                <button type="button" class="btn btn-secondary" (click)="addProduct(product.id)">
                   <span>AGREGAR</span>
                 </button>
               </div>

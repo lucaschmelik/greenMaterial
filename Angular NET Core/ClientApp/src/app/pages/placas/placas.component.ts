@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from '../../shared/models/product';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,12 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./placas.component.css']
 })
 
-export class PlacasComponent {
+export class PlacasComponent implements OnInit {
   
   constructor(
     private productService:ProductService,
     private invoiceService: InvoiceService,
-    private router: Router){}
+    private route: ActivatedRoute,
+    private router: Router) { }
   
   cantidad: string = "1";
   color: string = "1";
@@ -28,39 +29,27 @@ export class PlacasComponent {
     detail: '',
     price: 0,
     color: '',
-    stock: 0
+    stock: 0,
+    image: ''
   };
 
   descont: number = 20;
 
   ngOnInit() {
-    this.loadProducts();
-  }
-
-  loadProducts() {
-    
-    this.productService.getProducts().subscribe({
-      next: (userData) => {
-
-        const firstProduct = userData[0];
-
-        this.product.id = firstProduct.id;
-        this.product.price = firstProduct.price;
-        this.product.description = firstProduct.description;
-        this.product.subdescription = firstProduct.subdescription;
-        this.product.detail = firstProduct.detail;
-        this.product.price = firstProduct.price;
-
-        console.log('productos componente placas', userData);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });      
+    this.route.params.subscribe(params => {
+      var ejemplo = JSON.parse(params['productMocks']);
+      this.product.id = ejemplo.id;
+      this.product.description = ejemplo.description;
+      this.product.subdescription = ejemplo.subdescription;
+      this.product.detail = ejemplo.detail;
+      this.product.price = ejemplo.price;
+      this.product.stock = ejemplo.stock;
+      this.product.color = ejemplo.color;
+      this.product.image = ejemplo.image;
+    });
   }
 
   agregarAlCarrito() {
-    
     this.invoiceService.crearInvoice().subscribe({
       next: (invoiceId) => {
         console.log('Ítems agregados al carrito con éxito', invoiceId);
