@@ -4,4 +4,5 @@ export interface ItemResponse {
     product: Product;
     amount: number;
     itemId: number;
+    image: string
   }
