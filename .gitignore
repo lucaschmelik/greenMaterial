@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Angular NET Core
+/Angular NET Core/ClientApp/.angular/cache/15.2.5
