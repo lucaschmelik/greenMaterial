@@ -107,22 +107,19 @@ namespace Angular_NET_Core.Controllers
         {
             try
             {
-                if(!string.IsNullOrEmpty(user.lastName) &&
-                    !string.IsNullOrEmpty(user.firstName) &&
-                    !string.IsNullOrEmpty(user.email) &&
-                    !string.IsNullOrEmpty(user.password))
+                if (string.IsNullOrEmpty(user.lastName) ||
+                    string.IsNullOrEmpty(user.firstName) ||
+                    string.IsNullOrEmpty(user.email) ||
+                    string.IsNullOrEmpty(user.password)) return BadRequest("Faltan campos obligatorios.");
+                if (_context.users.Any(u => u.email == user.email))
                 {
-                    if (_context.users.Any(u => u.email == user.email))
-                    {
-                        return Conflict("El correo electrónico ya está en uso.");
-                    }
-
-                    _context.users.Add(user);
-                    _context.SaveChanges();
-                    return Ok(user.id);
+                    return Conflict("El correo electrónico ya está en uso.");
                 }
 
-                return BadRequest("Faltan campos obligatorios.");
+                _context.users.Add(user);
+                _context.SaveChanges();
+                return Ok(user.id);
+
             }
             catch (Exception e)
             {
