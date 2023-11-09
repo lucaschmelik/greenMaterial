@@ -47,7 +47,8 @@ export class RegistrarComponent {
           lastName: lastName,
           firstName: firstName,
           email: email,
-          password: password
+          password: password,
+          Rol: "Administrador"
         };
 
         this.loginService.register(newUser).subscribe({
