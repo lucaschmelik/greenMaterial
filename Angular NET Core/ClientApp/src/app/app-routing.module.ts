@@ -11,6 +11,7 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { RegistrarComponent } from './pages/registrar/registrar.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/inicio', pathMatch:'full'},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path:'usuario', component:UsuarioComponent},
   {path:'cuenta', component:CuentaComponent},
   {path:'nosotros', component:NosotrosComponent},
-  {path:'registro', component:RegistrarComponent}
+  { path: 'registro', component: RegistrarComponent },
+  { path: 'contacto', component: ContactoComponent }
 ];
 
 @NgModule({
