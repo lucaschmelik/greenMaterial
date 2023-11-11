@@ -37,12 +37,10 @@ export class LoginComponent {
             next: (userData) => {
               console.log('UserData login component:', userData);
 
-              if(userData.id != 0){
+              if (userData.id != 0) {
 
-              /*if(userData.status == 200){
-
-                localStorage.setItem("token", userData.token)
-                localStorage.setItem("rol", userData.rol)*/
+                localStorage.setItem("id", userData.id.toString());
+                localStorage.setItem("rol", userData.rol.toString());
 
                 Swal.fire({
                   title: 'Inicio de sessión',

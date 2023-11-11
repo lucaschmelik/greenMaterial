@@ -12,17 +12,10 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
 
   isUserLogin:boolean=false
-  userLogin?:UserResponse
 
   constructor(private loginService:LoginService, private router:Router){  }
 
   ngOnInit(): void {
-
-    this.loginService.userLogin.subscribe({
-      next: userLogin => {
-        this.userLogin = userLogin
-      }
-    })
     
     this.loginService.isUserLoginOn.subscribe({
       next: isUserLogin => {

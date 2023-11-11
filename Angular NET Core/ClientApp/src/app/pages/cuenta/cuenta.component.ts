@@ -9,13 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cuenta.component.css']
 })
 export class CuentaComponent implements OnInit {
-  user: any;
   invoices: any[] = [];
 
   constructor(private cuentaService: CuentaService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.GetUser();
     this.GetInvoices();
   }
 
@@ -37,13 +35,6 @@ export class CuentaComponent implements OnInit {
       });
 
       console.log(dataPedidos)
-    });
-  }
-
-  GetUser(){
-    this.loginService.userLogin.subscribe((data: any) => {
-
-      this.user = data;
     });
   }
 

@@ -1,7 +1,6 @@
 ﻿using DB;
 using GreenMaterialBackEnd.Models.User;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Angular_NET_Core.Controllers
 {
@@ -72,27 +71,24 @@ namespace Angular_NET_Core.Controllers
                     throw new Exception("usuario no encontrado");
                 }
 
-                //var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
-
-                //var claims = new[]
-                //{
-                //    new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
-                //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                //    new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()),
-                //    new Claim("id", userFound.id.ToString())
-                //};
-
-                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
-                //var sigIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                //var token = new JwtSecurityToken(jwt.Issuer, jwt.Audience, claims, expires: DateTime.Now.AddMinutes(10), signingCredentials: sigIn);
-
-                //return Ok(new
-                //{
-                //    user = userFound,
-                //    status = 200,
-                //    token = new JwtSecurityTokenHandler().WriteToken(token)
-                //});
+                /*ALGUN DÍA VOY A IMPLEMENTAR JWT
+                var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
+                var claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()),
+                    new Claim("id", userFound.id.ToString())
+                };
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
+                var sigIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(jwt.Issuer, jwt.Audience, claims, expires: DateTime.Now.AddMinutes(10), signingCredentials: sigIn);
+                return Ok(new
+                {
+                    user = userFound,
+                    status = 200,
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                });*/
 
                 return Ok(userFound);
             }
