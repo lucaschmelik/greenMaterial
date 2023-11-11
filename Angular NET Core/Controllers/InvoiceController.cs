@@ -91,14 +91,23 @@ namespace GreenMaterialBackEnd.Controllers
         {
             try
             {
-                var item = new Item()
-                {
-                    cantidad = cantidad,
-                    productId = productId,
-                    invoiceId = invoiceId
-                };
+                var itemWithProduct = _context.items.FirstOrDefault(x => x.invoiceId == invoiceId && x.productId == productId);
 
-                _context.items.Add(item);
+                if (itemWithProduct != null)
+                {
+                    itemWithProduct.cantidad += cantidad;
+                }
+                else
+                {
+                    var item = new Item()
+                    {
+                        cantidad = cantidad,
+                        productId = productId,
+                        invoiceId = invoiceId
+                    };
+
+                    _context.items.Add(item);
+                }
 
                 _context.SaveChanges();
 
