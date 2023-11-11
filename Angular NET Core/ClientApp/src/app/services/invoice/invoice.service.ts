@@ -18,6 +18,11 @@ export class InvoiceService {
     if (!this.loginService.userIsLoginOn) {
       return throwError( () => 'Tiene que estar logeado');
     }
+
+    if (this.carritoService.hasCurrentInvoice > 1) {
+      return throwError(() => 'Ingrese al carrito, tiene un pedido en curso');
+    }
+
     return this.http.post(`${this.api + this.controllerInvoice}?userId=${this.loginService.userIdLogin}`, null);
   }  
 
@@ -26,7 +31,7 @@ export class InvoiceService {
       return throwError( () => 'Tiene que estar logeado');
     }
 
-    if (this.carritoService.hasCurrentInvoice) {
+    if (this.carritoService.hasCurrentInvoice > 1) {
       return throwError(() => 'Ingrese al carrito, tiene un pedido en curso');
     }
 

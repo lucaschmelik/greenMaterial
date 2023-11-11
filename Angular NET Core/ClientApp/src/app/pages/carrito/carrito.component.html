@@ -9,12 +9,12 @@
     <div *ngIf="!itemsList.length && !stateInvoice" style="text-align: center; padding-top: 5%; font-style: italic;">
         <h3>No hay productos agregados al carrito...</h3>
     </div>
-    <div *ngIf="stateInvoice" style="text-align: center; padding-top: 2%;">
+    <div *ngIf="stateInvoice && stateInvoice != 1" style="text-align: center; padding-top: 2%;">
         <button type="button" style="width: 50%;" class="btn btn-secondary" (click)="goTo()">
             <span>CONTINUAR ULTIMA COMPRA</span>
         </button>
     </div>
-    <div *ngIf="itemsList.length && !stateInvoice" class="row" style="padding-left: 5%">
+    <div *ngIf="itemsList.length > 0 && stateInvoice == 1" class="row" style="padding-left: 5%">
         <div class="col-md-6">
             <h5 class="tituloDiv">TU PEDIDO</h5>
             <div *ngFor="let item of itemsList" style="padding-bottom: 2%">

@@ -35,9 +35,7 @@ export class CarritoService {
     return this.http.get<number>(`${this.api + this.controllerInvoice}/HasInvoiceByStateAndUser?userId=${this.loginService.userIdLogin}`)
     .pipe(
       tap(response => {
-        if(response != 0){
-          this.stateInvoice.next(response);
-        }
+        this.stateInvoice.next(response);
     }))
   }
 

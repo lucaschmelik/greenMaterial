@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from '../../shared/models/product';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CarritoService } from '../../services/carrito/carrito.service';
 
 @Component({
   selector: 'app-placas',
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class PlacasComponent implements OnInit {
   
   constructor(
-    private productService:ProductService,
+    private carritoService: CarritoService,
     private invoiceService: InvoiceService,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -36,6 +36,11 @@ export class PlacasComponent implements OnInit {
   descont: number = 20;
 
   ngOnInit() {
+    this.actualizarProductoMostrado();
+    this.actualizarTienePedidoEnProceso()
+  }
+
+  actualizarProductoMostrado() {
     this.route.params.subscribe(params => {
       var ejemplo = JSON.parse(params['productMocks']);
       this.product.id = ejemplo.id;
@@ -47,6 +52,10 @@ export class PlacasComponent implements OnInit {
       this.product.color = ejemplo.color;
       this.product.image = ejemplo.image;
     });
+  }
+
+  actualizarTienePedidoEnProceso() {
+    this.carritoService.HasInvoiceByStateAndUser().subscribe();
   }
 
   agregarAlCarrito() {

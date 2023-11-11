@@ -16,25 +16,25 @@ export class CarritoComponent implements OnInit {
 
   itemsList: ItemResponse[] = []
   totalPrice = 0;
-  stateInvoice = 0;
+  stateInvoice = this.carritoService.hasCurrentInvoice;
 
   ngOnInit() {
     this.loadShippingCart();
     this.HasInvoiceByStateAndUser();
   }
 
-  loadShippingCart(){
+  loadShippingCart() {
     this.carritoService.getProductsCurrentShippingCart().subscribe({
       next: (data) => {
 
-        if(!data){
+        if (!data) {
           this.itemsList = []
         }
-        else{
+        else {
           const response = data[0]
           this.itemsList = response.products
         }
-        
+
         this.calculateTotalPrice();
       },
       error: (error) => {
@@ -47,36 +47,37 @@ export class CarritoComponent implements OnInit {
     this.totalPrice = this.itemsList.reduce((total, item) => total + item.product.price * item.amount, 0);
   }
 
-  confirmShippingCart(){
-    this.carritoService.updateInvoice(2).subscribe(() => 
+  confirmShippingCart() {
+    this.carritoService.updateInvoice(2).subscribe(() =>
       this.router.navigate(['/envio']))
   }
 
-  goTo(){
-    if(this.stateInvoice == 2){
+  goTo() {
+    if (this.stateInvoice == 2) {
       this.goToDelivery()
-    }else{
+    } else {
       this.goToPayment()
     }
   }
 
-  goToDelivery(){
+  goToDelivery() {
     this.router.navigate(['/envio']);
   }
 
-  goToPayment(){
+  goToPayment() {
     this.router.navigate(['/pago']);
   }
 
-  deleteItem(itemId : number){
+  deleteItem(itemId: number) {
     this.carritoService.deleteItem(itemId).subscribe({
-      next: () => this.loadShippingCart()
+      next: () => this.loadShippingCart(),
+      complete: () => this.HasInvoiceByStateAndUser()
     })
   }
 
-  HasInvoiceByStateAndUser(){
+  HasInvoiceByStateAndUser() {
     this.carritoService.HasInvoiceByStateAndUser().subscribe((response) => {
       this.stateInvoice = response
-    } )
+    })
   }
 }

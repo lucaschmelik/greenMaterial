@@ -221,6 +221,7 @@ namespace GreenMaterialBackEnd.Controllers
                 var lastInvoice = _context.invoices.FirstOrDefault(
                     x => x.isCurrent &&
                          x.userId == userId && (
+                         x.state == (int)StateEnum.Carrito ||
                          x.state == (int)StateEnum.Envio ||
                          x.state == (int)StateEnum.Pago));
 
