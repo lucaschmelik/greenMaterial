@@ -38,7 +38,8 @@ namespace GreenMaterialBackEnd.Controllers
                         x.id,
                         Estado = Enum.GetName(typeof(StateEnum), x.state),
                         EsActual = x.isCurrent ? "Si" : "No",
-                        Total = GetTotalAmountByInvoiceId(x)
+                        Total = GetTotalAmountByInvoiceId(x),
+                        FechaCreacion = x.dateCreation.ToShortDateString()
                     }).ToList();
 
                 return Ok(list);
@@ -71,7 +72,8 @@ namespace GreenMaterialBackEnd.Controllers
                 {
                     userId = userId,
                     state = (int)StateEnum.Carrito,
-                    isCurrent = true
+                    isCurrent = true,
+                    dateCreation = DateTime.Now
                 };
 
                 _context.invoices.Add(invoice);

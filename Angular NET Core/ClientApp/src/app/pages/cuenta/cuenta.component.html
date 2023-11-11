@@ -1,32 +1,33 @@
 <div class="text-center container-fluid">
-    <div class="row" style="padding-bottom: 2%;">
-        <hr class="no-line">
-    </div>
-    <div >
-        <h5 class="titulo" style="padding-bottom: 1%;">TUS PEDIDOS</h5>
-        <div *ngFor="let invoice of invoices" style="padding-bottom: 1%">
-            <div class="container" style="width: 35%;">
-                <div *ngIf="EsEstadoAceptable(invoice.estado)" class="top-bar">
-                    <div class="delete-icon" (click)="DeleteInvoice(invoice.id)">
-                        &#10006;
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="text">
-                        <h5 class="">Número de pedido: {{invoice.id}}</h5>
-                        <p class="subtitulo">Estado: {{invoice.estado}}</p>
-                        <p class="subtitulo">En Curso: {{invoice.esActual}}</p>
-                        <div *ngIf="invoice.estado == 'Pagado'" style="text-align: center; padding-top: 2%;">
-                            <button type="button" class="btn btn-secondary" (click)="OrderDelivery(invoice.id)">
-                                <span>MARCAR ENTREGADO</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="total subtitulo">
-                    Total del Pedido: ${{invoice.total}}
-                </div>
-            </div>
+  <div class="row" style="padding-bottom: 2%;">
+    <hr class="no-line">
+  </div>
+  <div>
+    <h5 class="titulo" style="padding-bottom: 1%;">TUS PEDIDOS</h5>
+    <div *ngFor="let invoice of invoices" style="padding-bottom: 1%">
+      <div class="container" style="width: 35%;">
+        <div *ngIf="EsEstadoAceptable(invoice.estado)" class="top-bar">
+          <div class="delete-icon" (click)="DeleteInvoice(invoice.id)">
+            &#10006;
+          </div>
         </div>
+        <div class="content">
+          <div class="text">
+            <h5 class="">Número de pedido: {{invoice.id}}</h5>
+            <p class="subtitulo">Estado: {{invoice.estado}}</p>
+            <p class="subtitulo">En Curso: {{invoice.esActual}}</p>
+            <p class="subtitulo">Creado: {{invoice.fechaCreacion}}</p>
+            <div *ngIf="invoice.estado == 'Pagado'" style="text-align: center; padding-top: 2%;">
+              <button type="button" class="btn btn-secondary" (click)="OrderDelivery(invoice.id)">
+                <span>MARCAR ENTREGADO</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="total subtitulo">
+          Total del Pedido: ${{invoice.total}}
+        </div>
+      </div>
     </div>
+  </div>
 </div>

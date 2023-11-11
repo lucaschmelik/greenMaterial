@@ -24,15 +24,13 @@ export class CuentaComponent implements OnInit {
  
       this.invoices.sort((a, b) => {
         if (a.esActual === 'Si' && b.esActual === 'No') {
-          return -1; 
+          return -1;
         } else if (a.esActual === 'No' && b.esActual === 'Si') {
-          return 1; 
+          return 1;
         } else {
           return a.id - b.id;
         }
       });
-
-      console.log(dataPedidos)
     });
   }
 

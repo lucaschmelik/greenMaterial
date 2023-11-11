@@ -13,6 +13,7 @@ namespace DB
         public int userId { get; set; }
         public int state { get; set; }
         public bool isCurrent { get; set; }
+        public DateTime dateCreation { get; set; }
 
         [ForeignKey("userId")]
         [JsonIgnore]
