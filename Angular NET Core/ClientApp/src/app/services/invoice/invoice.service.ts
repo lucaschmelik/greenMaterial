@@ -14,8 +14,8 @@ export class InvoiceService {
   private api = '';
   private controllerInvoice = 'invoice';
 
-  crearInvoice(): Observable<any> {
-    if (this.loginService.userIdLogin != 0) {
+  crearInvoice(): Observable<any> { 
+    if (!(this.loginService.userIdLogin != 0)) {
       return throwError( () => 'Tiene que estar logeado');
     }
 
@@ -27,7 +27,7 @@ export class InvoiceService {
   }  
 
   AgregarItemInvoice(invoiceId: number, productId: number, cantidad: number): Observable<any> {
-    if (this.loginService.userIdLogin != 0) {
+    if (!(this.loginService.userIdLogin != 0)) {
       return throwError( () => 'Tiene que estar logeado');
     }
 

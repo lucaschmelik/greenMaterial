@@ -38,7 +38,7 @@ namespace GreenMaterialBackEnd.Controllers
                         x.id,
                         Estado = Enum.GetName(typeof(StateEnum), x.state),
                         EsActual = x.isCurrent ? "Si" : "No",
-                        Total = GetTotalAmountByInvoiceId(x.id)
+                        Total = GetTotalAmountByInvoiceId(x)
                     }).ToList();
 
                 return Ok(list);
@@ -169,24 +169,19 @@ namespace GreenMaterialBackEnd.Controllers
             }
         }
 
-        private decimal GetTotalAmountByInvoiceId(int invoiceId)
+        private decimal GetTotalAmountByInvoiceId(Invoice invoice)
         {
             try
             {
-                var invoice = _context.invoices.FirstOrDefault(
-                    x => x.id == invoiceId) ?? throw new Exception("El usuario no tiene pedidos");
-
-                var totalSum = _context.items
+                return _context.items
                     .Where(x => x.invoiceId == invoice.id)
-                    .Join(_context.products, item => item.productId, product => product.id, (item, product) => new
-                    {
-                        item.productId,
-                        item.cantidad,
-                        precio = product.price
-                    })
-                    .Sum(item => item.cantidad * item.precio);
-
-                return totalSum;
+                    .Join(
+                        _context.products,
+                        item => item.productId,
+                        product => product.id,
+                        (item, product) => item.cantidad * product.price
+                    )
+                    .Sum();
             }
             catch (Exception e)
             {
@@ -203,7 +198,7 @@ namespace GreenMaterialBackEnd.Controllers
                     x => x.userId == userId && 
                     x.isCurrent) ?? throw new Exception("El usuario no tiene pedido en curso");
 
-                var totalSum = GetTotalAmountByInvoiceId(invoice.id);
+                var totalSum = GetTotalAmountByInvoiceId(invoice);
 
                 return Ok(totalSum);
             }

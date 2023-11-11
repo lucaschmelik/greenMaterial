@@ -68,8 +68,8 @@ export class PagoComponent implements OnInit, AfterViewInit{
 
   ShowLoading(){
     Swal.fire({
-      title: 'Uploading...',
-      html: 'Please wait...',
+      title: 'Procesando pago...',
+      html: 'Aguarde por favor...',
       allowEscapeKey: false,
       allowOutsideClick: false,
       didOpen: () => {

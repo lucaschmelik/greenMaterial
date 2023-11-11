@@ -21,15 +21,13 @@ export class CuentaComponent implements OnInit {
     this.cuentaService.GetInvoicesByUser().subscribe((dataPedidos: any) => {
 
       this.invoices = dataPedidos.filter((invoice: any) => invoice.estado !== 'Eliminado');
-
-      // Ordenar por la propiedad esActual y luego por id
+ 
       this.invoices.sort((a, b) => {
         if (a.esActual === 'Si' && b.esActual === 'No') {
-          return -1; // Si 'a' tiene esActual 'Si' y 'b' tiene esActual 'No', 'a' va primero
+          return -1; 
         } else if (a.esActual === 'No' && b.esActual === 'Si') {
-          return 1; // Si 'a' tiene esActual 'No' y 'b' tiene esActual 'Si', 'b' va primero
+          return 1; 
         } else {
-          // Si ambos tienen el mismo esActual o ambos tienen 'Si' o ambos tienen 'No', ordena por id
           return a.id - b.id;
         }
       });

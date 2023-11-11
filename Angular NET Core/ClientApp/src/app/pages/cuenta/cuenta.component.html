@@ -3,7 +3,7 @@
         <hr class="no-line">
     </div>
     <div >
-        <h5 class="tituloDiv" style="padding-top: 1%; padding-bottom: 1%;">TUS PEDIDOS</h5>
+        <h5 class="titulo" style="padding-bottom: 1%;">TUS PEDIDOS</h5>
         <div *ngFor="let invoice of invoices" style="padding-bottom: 1%">
             <div class="container" style="width: 35%;">
                 <div *ngIf="EsEstadoAceptable(invoice.estado)" class="top-bar">
