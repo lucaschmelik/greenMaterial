@@ -1,1 +1,38 @@
-<p>usuario works!</p>
+<div class="container-fluid">
+  <div class="row" style="padding-bottom: 2%;">
+    <hr class="no-line">
+  </div>
+  <div style="text-align: center; padding-bottom: 3%;">
+    <h1 class="titulo">USUARIOS</h1>
+    
+  </div>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.firstName}}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <select class="form-select" style="width: auto" [(ngModel)]="user.rol">
+              <option [ngValue]="'Cliente'">Cliente</option>
+              <option [ngValue]="'Administrador'">Administrador</option>
+              <option [ngValue]="'Comprador'">Comprador</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

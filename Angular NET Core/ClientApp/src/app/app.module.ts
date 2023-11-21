@@ -18,6 +18,9 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { CuentaComponent } from './pages/cuenta/cuenta.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { RegistrarComponent } from './pages/registrar/registrar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DecimalPipe, NgFor } from '@angular/common';
+import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,9 +36,9 @@ import { RegistrarComponent } from './pages/registrar/registrar.component';
     PagoComponent,
     EnvioComponent,
     ProductoComponent,
-    UsuarioComponent,
     CuentaComponent,
     NosotrosComponent,
+    UsuarioComponent,
     RegistrarComponent
   ],
   imports: [
@@ -44,7 +47,13 @@ import { RegistrarComponent } from './pages/registrar/registrar.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    DecimalPipe,
+    NgFor,
+    FormsModule,
+    NgbTypeaheadModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
