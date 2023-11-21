@@ -17,4 +17,8 @@ export class UserService {
   getUsers(): Observable<UserResponse[]> {
     return this.http.get<UserResponse[]>(`${this.api + this.controller}`);
   }
+
+  changeRol(userId: number, rol: string): Observable<any> {
+    return this.http.put(`${this.api + this.controller}/ChangeRol?userId=${userId}&rol=${rol}`, null);
+  }
 }

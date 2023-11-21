@@ -122,5 +122,31 @@ namespace Angular_NET_Core.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("ChangeRol")]
+        public ActionResult ChangeRol(int userId, string rol)
+        {
+            try
+            {
+                var userFound = _context.users.FirstOrDefault(user => user.id == userId);
+
+                if (userFound != null)
+                {
+                    userFound.Rol = rol;
+                }
+                else
+                {
+                    throw new Exception("usuario no encontrado");
+                }
+
+                _context.SaveChanges();
+
+                return Ok(userFound);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

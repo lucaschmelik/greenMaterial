@@ -44,11 +44,11 @@ export class RegistrarComponent {
       if (lastName && firstName && email && password) {
 
         const newUser: any = {
-          lastName: lastName,
           firstName: firstName,
+          lastName: lastName,
           email: email,
           password: password,
-          Rol: "Administrador"
+          Rol: "Cliente"
         };
 
         this.loginService.register(newUser).subscribe({

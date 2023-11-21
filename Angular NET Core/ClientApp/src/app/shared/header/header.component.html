@@ -42,13 +42,13 @@
               <li class="nav-item" *ngIf="isUserLogin">
                 <a class="nav-link" routerLink="/carrito">CARRITO</a>
               </li>
-              <li class="nav-item" *ngIf="isUserLogin">
+              <li class="nav-item" *ngIf="isUserLogin && this.userRolLoginOn == 'Administrador'">
                 <a class="nav-link" routerLink="/cuenta">CUENTA</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="/contacto">CONTACTO</a>
               </li>
-              <li class="nav-item dropdown" *ngIf="isUserLogin">
+              <li class="nav-item dropdown" *ngIf="isUserLogin && this.userRolLoginOn == 'Administrador'">
                 <a class="nav-link" routerLink="/usuario">ADMINISTRACION</a>
               </li>
             </ul>

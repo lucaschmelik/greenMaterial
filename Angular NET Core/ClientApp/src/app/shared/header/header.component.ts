@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit {
 
-  isUserLogin:boolean=false
+  isUserLogin: boolean = false
+  userRolLoginOn: string = ''
 
   constructor(private loginService:LoginService, private router:Router){  }
 
@@ -19,7 +20,13 @@ export class HeaderComponent implements OnInit {
     
     this.loginService.isUserLoginOn.subscribe({
       next: isUserLogin => {
-        this.isUserLogin = isUserLogin
+        this.isUserLogin = isUserLogin;
+      }
+    })
+
+    this.loginService.userRolLoginOn.subscribe({
+      next: userRolLoginOn => {
+        this.userRolLoginOn = userRolLoginOn;
       }
     })
   }

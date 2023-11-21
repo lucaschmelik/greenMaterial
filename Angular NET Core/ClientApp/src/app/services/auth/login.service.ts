@@ -10,6 +10,7 @@ import { UserResponse } from './userResponse';
 export class LoginService {
   private currentUserId: number;
   private userLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private rolLoginOn: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private api = '';
   private controller = 'user';
 
@@ -17,6 +18,10 @@ export class LoginService {
     this.api = baseUrl
     this.currentUserId = parseInt(localStorage.getItem("id") ?? "0", 10);
     this.userLoginOn.next(this.currentUserId != 0);
+
+    if (this.userLoginOn) {
+      this.rolLoginOn.next(localStorage.getItem("rol") ?? "");
+    }
   }
 
   login(credentials: LoginRequest): Observable<UserResponse> {
@@ -30,6 +35,7 @@ export class LoginService {
         if (userData.id != 0) {
           this.currentUserId = userData.id;
           this.userLoginOn.next(true);
+          this.rolLoginOn.next(userData.rol);
           localStorage.setItem("id", this.currentUserId.toString());
         }
       })
@@ -48,8 +54,13 @@ export class LoginService {
     return this.userLoginOn.asObservable();
   }
 
+  get userRolLoginOn(): Observable<string> {
+    return this.rolLoginOn.asObservable();
+  }
+
   cerrarSesion() {
     this.userLoginOn.next(false);
     localStorage.setItem("id", "0");
+    localStorage.setItem("rol", "");
   }
 }
